@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
             if (!_dead)
             {
                 _animator.SetBool("IsDead", true);
-                GetComponent<CharacterController2D>().enabled = false;
+                GetComponent<CharacterMovement>().enabled = false;
                 _dead = true;
             }
         }
