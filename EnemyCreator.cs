@@ -11,7 +11,6 @@ public class EnemyCreator : MonoBehaviour
     private float _maxEmptyCount = 15;
     private float _emptyCount = 0;
     private bool _availability = true;
-
     private Transform[] _points;
 
     private void Start()
