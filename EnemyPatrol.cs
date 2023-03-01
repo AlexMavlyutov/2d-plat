@@ -23,6 +23,8 @@ public class EnemyPatrol : MonoBehaviour
     private float _idleTimer;
     private Vector3 _initScale;
     private bool _movingRight;
+    private int _rightDirection = 1;
+    private int _leftDirection = -1;
 
     private void Awake()
     {
@@ -39,14 +41,14 @@ public class EnemyPatrol : MonoBehaviour
         if (_movingRight)
         {
             if (_enemy.position.x <= _rightPoint.position.x)
-                MoveInDirection(1);
+                MoveInDirection(_rightDirection);
             else
                 DirectionChange();
         }
         else
         {
             if (_enemy.position.x >= _leftPoint.position.x)
-                MoveInDirection(-1);
+                MoveInDirection(_leftDirection);
             else
                 DirectionChange();
         }
@@ -63,18 +65,12 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-
-
     private void MoveInDirection(int direction)
     {
         _idleTimer = 0;
         _animator.SetBool("Move", true);
         _enemy.localScale = new Vector3(Mathf.Abs(_initScale.x) * direction, _initScale.y, _initScale.y);
-
         _enemy.position = new Vector3(_enemy.position.x + Time.deltaTime * direction * _speed, _enemy.position.y, _enemy.position.z);
     }
-
-
-
 }
 
