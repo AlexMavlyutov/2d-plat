@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float _jumpForse;
-    [SerializeField] private float _speed;
     public float MinGroundNormalY = .65f;
     public float GravityModifier = 1f;
     public Vector2 Velocity;
     public LayerMask LayerMask;
-
+    [SerializeField] private float _jumpForse;
+    [SerializeField] private float _speed;
 
     protected Vector2 targetVelocity;
     protected float horizontalMove;
@@ -22,9 +21,6 @@ public class CharacterController2D : MonoBehaviour
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
-
-
-
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
@@ -36,7 +32,6 @@ public class CharacterController2D : MonoBehaviour
 
     void Start()
     {
-
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(LayerMask);
         contactFilter.useLayerMask = true;
@@ -60,6 +55,7 @@ public class CharacterController2D : MonoBehaviour
         {
             transform.localScale = Vector3.one;
         }
+
         else if (horizontalMove < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);           
@@ -70,7 +66,6 @@ public class CharacterController2D : MonoBehaviour
     {
         Velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
         Velocity.x = targetVelocity.x;
-
         grounded = false;
 
         Vector2 deltaPosition = Velocity * Time.deltaTime;
@@ -102,9 +97,11 @@ public class CharacterController2D : MonoBehaviour
             for (int i = 0; i < hitBufferList.Count; i++)
             {
                 Vector2 currentNormal = hitBufferList[i].normal;
+
                 if (currentNormal.y > MinGroundNormalY)
                 {
                     grounded = true;
+
                     if (yMovement)
                     {
                         groundNormal = currentNormal;
@@ -113,6 +110,7 @@ public class CharacterController2D : MonoBehaviour
                 }
 
                 float projection = Vector2.Dot(Velocity, currentNormal);
+
                 if (projection < 0)
                 {
                     Velocity = Velocity - projection * currentNormal;
