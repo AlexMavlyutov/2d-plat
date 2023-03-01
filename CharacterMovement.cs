@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     public float MinGroundNormalY = .65f;
     public float GravityModifier = 1f;
