@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Coin : MonoBehaviour
+public class CoinCountWriter : MonoBehaviour
 {
     public Text coinText;
     public static int coin;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        coinText.text = $"{coin}" ;
+        coinText.text = $"{coin}";
     }
 }
