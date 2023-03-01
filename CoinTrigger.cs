@@ -11,9 +11,10 @@ public class CoinTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             CoinCountWriter.coin++;
+            
             gameObject.SetActive(false);
 
-            Invoke("ActivateCoin", _waitingTime);
+            Invoke(nameof(ActivateCoin), _waitingTime);
         }   
     }
 
