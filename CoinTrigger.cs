@@ -8,7 +8,7 @@ public class CoinTrigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.TryGetComponent(out Player player))
         {
             CoinCountWriter.coin++;
             
