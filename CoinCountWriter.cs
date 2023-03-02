@@ -8,10 +8,16 @@ public class CoinCountWriter : MonoBehaviour
     [SerializeField]  private Text coinText;
     private int coin = 0;
 
-    private void Start()
+    private void OnEnable()
     {
-        CoinTrigger.increaseOfCoins += WriteCount;
+       CoinTrigger.IncreaseOfCoins += WriteCount;       
     }
+
+    private void OnDisable()
+    {
+        CoinTrigger.IncreaseOfCoins -= WriteCount;
+    }
+
 
     private void WriteCount()
     {
