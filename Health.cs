@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
 
     public float currentHealth { get; private set; }
     private bool _dead;
+    private int _demage = 1;
 
     private Animator _animator;
 
@@ -45,7 +46,7 @@ public class Health : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TakeDemage(1);
+            TakeDemage(_demage);
         }
     }
 }
