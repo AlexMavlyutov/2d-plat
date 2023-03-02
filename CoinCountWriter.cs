@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class CoinCountWriter : MonoBehaviour
 {
-    public Text coinText;
-    public static int coin;
+    [SerializeField]  private Text coinText;
+    private int coin = 0;
 
-    private void FixedUpdate()
+    private void Start()
     {
+        CoinTrigger.increaseOfCoins += WriteCount;
+    }
+
+    private void WriteCount()
+    {
+        coin++;
         coinText.text = $"{coin}";
     }
 }
