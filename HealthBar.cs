@@ -16,7 +16,17 @@ public class HealthBar : MonoBehaviour
         _currentHealth.fillAmount = _playerHealth.currentHealth / _maxHealth;
     }
 
-    private void Update()
+    private void OnEnable()
+    {
+        Health.TakeOnePointOfLife += DrawHealth;
+    }
+
+    private void OnDisable()
+    {
+        Health.TakeOnePointOfLife -= DrawHealth;
+    }
+
+    private void DrawHealth()
     {
         _currentHealth.fillAmount = _playerHealth.currentHealth / _maxHealth;
     }
