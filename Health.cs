@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [Header("Health")]
+    public static event UnityAction TakeOnePointOfLife;
+
+     [Header("Health")]
     [SerializeField] private float _startingHealth;
 
     [Header("Hitframes")]
@@ -13,7 +16,6 @@ public class Health : MonoBehaviour
 
     public float currentHealth { get; private set; }
     private bool _dead;
-    private int _demage = 1;
 
     private Animator _animator;
 
@@ -27,6 +29,8 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth - demage, 0, _startingHealth);
 
+        TakeOnePointOfLife?.Invoke();
+
         if (currentHealth > 0)
         {
             _animator.SetBool("Hit",true);
@@ -39,14 +43,6 @@ public class Health : MonoBehaviour
                 GetComponent<CharacterMovement>().enabled = false;
                 _dead = true;
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TakeDemage(_demage);
         }
     }
 }
