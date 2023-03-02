@@ -14,11 +14,9 @@ public class MeeleEnemy : MonoBehaviour
     [SerializeField] private LayerMask _playerMask;
 
     private Health _playerHealth;
-
     private float _coolDownTimer = Mathf.Infinity;
     private Animator _animator;
     private EnemyPatrol _enemyPatrol;
-
 
     private void Awake()
     {
