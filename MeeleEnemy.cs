@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class MeeleEnemy : MonoBehaviour
 {
     [SerializeField] private float _atackCoolDown;
@@ -71,5 +73,4 @@ public class MeeleEnemy : MonoBehaviour
             _playerHealth.TakeDemage(_demage);
         }
     }
-
 }
