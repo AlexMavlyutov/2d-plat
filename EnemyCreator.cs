@@ -9,8 +9,9 @@ public class EnemyCreator : MonoBehaviour
     [SerializeField] private float _timeBetween;
 
     private float _maxEmptyCount = 15;
-    private float _emptyCount = 0;
+    private float _enemyCount = 0;
     private bool _availability = true;
+
     private Transform[] _points;
 
     private void Start()
@@ -37,9 +38,9 @@ public class EnemyCreator : MonoBehaviour
             {
                 Instantiate(_enemy, _points[i].position, Quaternion.identity);
 
-                _emptyCount += 1;
+                _enemyCount ++;
 
-                if (_emptyCount >= _maxEmptyCount)
+                if (_enemyCount >= _maxEmptyCount)
                 {
                     _availability = false;
                 }
