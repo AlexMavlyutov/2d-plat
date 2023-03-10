@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CoinCountWriter : MonoBehaviour
 {
     [SerializeField]  private Text coinText;
-    private int coin = 0;
+    private int _coin = 0;
 
     private void OnEnable()
     {
@@ -21,7 +21,7 @@ public class CoinCountWriter : MonoBehaviour
 
     private void WriteCount()
     {
-        coin++;
-        coinText.text = $"{coin}";
+        _coin++;
+        coinText.text = $"{_coin}";
     }
 }
