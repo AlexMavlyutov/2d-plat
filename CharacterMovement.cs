@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float MinGroundNormalY = .65f;
-    public float GravityModifier = 1f;
-    public Vector2 Velocity;
-    public LayerMask LayerMask;
+    [SerializeField] private float MinGroundNormalY = .65f;
+    [SerializeField] private float GravityModifier = 1f;
     [SerializeField] private float _jumpForse;
     [SerializeField] private float _speed;
+    [SerializeField] private Vector2 _velocity;
+    [SerializeField] private LayerMask _layerMask;
 
     protected Vector2 targetVelocity;
     protected float horizontalMove;
@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         contactFilter.useTriggers = false;
-        contactFilter.SetLayerMask(LayerMask);
+        contactFilter.SetLayerMask(_layerMask);
         contactFilter.useLayerMask = true;
     }
 
@@ -45,7 +45,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
-            Velocity.y = _jumpForse;
+            _velocity.y = _jumpForse;
             animator.SetBool("IsJumping", true);
         }
 
@@ -64,11 +64,11 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
-        Velocity.x = targetVelocity.x;
+        _velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
+        _velocity.x = targetVelocity.x;
         grounded = false;
 
-        Vector2 deltaPosition = Velocity * Time.deltaTime;
+        Vector2 deltaPosition = _velocity * Time.deltaTime;
         Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
         Vector2 move = moveAlongGround * deltaPosition.x;
 
@@ -109,11 +109,11 @@ public class CharacterMovement : MonoBehaviour
                     }
                 }
 
-                float projection = Vector2.Dot(Velocity, currentNormal);
+                float projection = Vector2.Dot(_velocity, currentNormal);
 
                 if (projection < 0)
                 {
-                    Velocity = Velocity - projection * currentNormal;
+                    _velocity = _velocity - projection * currentNormal;
                 }
 
                 float modifiedDistance = hitBufferList[i].distance - shellRadius;
