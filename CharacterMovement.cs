@@ -23,6 +23,8 @@ public class CharacterMovement : MonoBehaviour
     protected List<RaycastHit2D> HitBufferList = new List<RaycastHit2D>(16);
     protected const float MinMoveDistance = 0.001f;
     protected const float ShellRadius = 0.01f;
+    private int _isJumping = Animator.StringToHash("IsJumping");
+ 
 
     void OnEnable()
     {
@@ -46,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && Grounded)
         {
             _velocity.y = _jumpForse;
-            Animator.SetBool("IsJumping", true);
+            Animator.SetBool(_isJumping, true);
         }
 
         Animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -72,14 +74,14 @@ public class CharacterMovement : MonoBehaviour
         Vector2 moveAlongGround = new Vector2(GroundNormal.y, -GroundNormal.x);
         Vector2 move = moveAlongGround * deltaPosition.x;
 
-        Movement(move, false);
+        Move(move, false);
 
         move = Vector2.up * deltaPosition.y;
 
-        Movement(move, true);
+        Move(move, true);
     }
 
-    void Movement(Vector2 move, bool yMovement)
+    void Move(Vector2 move, bool yMovement)
     {
         float distance = move.magnitude;
 
