@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CoinTrigger : MonoBehaviour
+public class CoinCollectionChecker : MonoBehaviour
 {
-    public static event UnityAction increaseOfCoins;
+    public event UnityAction IncreaseOfCoins;
+
     private float _waitingTime = 10;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))
         {
-            increaseOfCoins?.Invoke();
+            IncreaseOfCoins?.Invoke();
 
             gameObject.SetActive(false);
 
