@@ -28,20 +28,20 @@ public class CharacterMovement : MonoBehaviour
     private int _isJumping = Animator.StringToHash("IsJumping");
  
 
-    void OnEnable()
+   private void OnEnable()
     {
         Rb2d = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
     }
 
-    void Start()
+    private void Start()
     {
         ContactFilter.useTriggers = false;
         ContactFilter.SetLayerMask(_layerMask);
         ContactFilter.useLayerMask = true;
     }
 
-    void Update()
+    private void Update()
     {
         TargetVelocity = new Vector2(Input.GetAxis("Horizontal") * _speed, TargetVelocity.y);
 
@@ -66,7 +66,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
         _velocity.x = TargetVelocity.x;
@@ -83,7 +83,7 @@ public class CharacterMovement : MonoBehaviour
         Move(move, true);
     }
 
-    void Move(Vector2 move, bool yMovement)
+    private void Move(Vector2 move, bool yMovement)
     {
         float distance = move.magnitude;
 
