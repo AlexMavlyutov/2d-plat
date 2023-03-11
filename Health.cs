@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float _framesFuration;
     [SerializeField] private float _numberOfFlashes;
 
+    private int _hit = Animator.StringToHash("Hit");
+    private int _isDead = Animator.StringToHash("IsDead");
     public float currentHealth { get; private set; }
     private bool _dead;
 
@@ -33,13 +35,13 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            _animator.SetBool("Hit",true);
+            _animator.SetBool(_hit,true);
         }
         else
         {
             if (!_dead)
             {
-                _animator.SetBool("IsDead", true);
+                _animator.SetBool(_isDead, true);
                 GetComponent<CharacterMovement>().enabled = false;
                 _dead = true;
             }
