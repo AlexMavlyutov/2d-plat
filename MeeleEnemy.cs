@@ -14,9 +14,11 @@ public class MeeleEnemy : MonoBehaviour
     [SerializeField] private LayerMask _playerMask;
 
     private Health _playerHealth;
+    private int _attack = Animator.StringToHash("Attack");
     private float _coolDownTimer = Mathf.Infinity;
     private Animator _animator;
     private EnemyPatrol _enemyPatrol;
+
 
     private void Awake()
     {
@@ -33,7 +35,7 @@ public class MeeleEnemy : MonoBehaviour
             if (_coolDownTimer > _atackCoolDown)
             {
                 _coolDownTimer = 0;
-                _animator.SetTrigger("Attack");
+                _animator.SetTrigger(_attack);
             }
         }
         
@@ -71,4 +73,5 @@ public class MeeleEnemy : MonoBehaviour
             _playerHealth.TakeDemage(_demage);
         }
     }
+
 }
