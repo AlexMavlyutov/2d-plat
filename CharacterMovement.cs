@@ -26,9 +26,10 @@ public class CharacterMovement : MonoBehaviour
     protected const float MinMoveDistance = 0.001f;
     protected const float ShellRadius = 0.01f;
     private int _isJumping = Animator.StringToHash("IsJumping");
- 
+    private int _horizontalMove = Animator.StringToHash("Speed");
 
-   private void OnEnable()
+
+    private void OnEnable()
     {
         Rb2d = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
@@ -53,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
             Animator.SetBool(_isJumping, true);
         }
 
-        Animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        Animator.SetFloat(_horizontalMove, Mathf.Abs(horizontalMove));
 
         if (horizontalMove > 0)
         {
