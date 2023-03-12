@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 public class CoinCollectionChecker : MonoBehaviour
 {
-    public event UnityAction IncreaseOfCoins;
-
     private float _waitingTime = 10;
+    
+    public event UnityAction IncreaseOfCoins;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
