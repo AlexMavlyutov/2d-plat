@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     private int _isDead = Animator.StringToHash("IsDead");
     public float currentHealth { get; private set; }
     private bool _dead;
+    private int _minimumHealth = 0 ;
 
     private Animator _animator;
 
@@ -33,7 +34,7 @@ public class Health : MonoBehaviour
 
         TakeOnePointOfLife?.Invoke();
 
-        if (currentHealth > 0)
+        if (currentHealth > _minimumHealth)
         {
             _animator.SetBool(_hit,true);
         }
