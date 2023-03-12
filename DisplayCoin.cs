@@ -15,7 +15,7 @@ public class DisplayCoin : MonoBehaviour
     {
         foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
         {
-            coinTrigger.IncreaseOfCoins += WriteCount;
+            coinTrigger.IncreaseOfCoins += OnIncreaseOfCOins;
         }            
     }
 
@@ -23,11 +23,11 @@ public class DisplayCoin : MonoBehaviour
     {
         foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
         {
-            coinTrigger.IncreaseOfCoins += WriteCount;
+            coinTrigger.IncreaseOfCoins += OnIncreaseOfCOins;
         }
     }
 
-    private void WriteCount()
+    private void OnIncreaseOfCOins()
     {
         _coin++;
         coinText.text = $"{_coin}";
