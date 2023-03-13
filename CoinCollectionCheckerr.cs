@@ -6,14 +6,14 @@ using UnityEngine.Events;
 public class CoinCollectionChecker : MonoBehaviour
 {
     private float _waitingTime = 10;
-    
-    public event UnityAction IncreaseOfCoins;
    
+    public event UnityAction IncreasedOfCoins;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))
         {
-            IncreaseOfCoins?.Invoke();
+            IncreasedOfCoins?.Invoke();
 
             gameObject.SetActive(false);
 
