@@ -15,7 +15,7 @@ public class CoinDisplayer : MonoBehaviour
     {
         foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
         {
-            coinTrigger.IncreaseOfCoins += OnIncreaseOfCOins;
+            coinTrigger.IncreasedOfCoins += OnIncreasedOfCOins;
         }            
     }
 
@@ -23,11 +23,11 @@ public class CoinDisplayer : MonoBehaviour
     {
         foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
         {
-            coinTrigger.IncreaseOfCoins += OnIncreaseOfCOins;
+            coinTrigger.IncreasedOfCoins += OnIncreasedOfCOins;
         }
     }
 
-    private void OnIncreaseOfCOins()
+    private void OnIncreasedOfCOins()
     {
         _coin++;
         coinText.text = $"{_coin}";
