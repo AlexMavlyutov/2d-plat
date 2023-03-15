@@ -6,30 +6,21 @@ using UnityEngine.UI;
 public class CoinDisplayer : MonoBehaviour
 {
     [SerializeField]  private Text coinText;
-    [SerializeField] private CoinCollectionChecker[]  _coinTrigger ;
-    
-    private int _coin = 0;
-
+    [SerializeField] private CoinCollector coinCollector;
+  
 
     private void OnEnable()
     {
-        foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
-        {
-            coinTrigger.IncreasedOfCoins += OnIncreasedOfCOins;
-        }            
+        coinCollector.IncreasedCoinsCount += DrawCoins;          
     }
 
     private void OnDisable()
     {
-        foreach (CoinCollectionChecker coinTrigger in _coinTrigger)
-        {
-            coinTrigger.IncreasedOfCoins += OnIncreasedOfCOins;
-        }
+        coinCollector.IncreasedCoinsCount -= DrawCoins;
     }
 
-    private void OnIncreasedOfCOins()
+    private void DrawCoins(int coinsCount)
     {
-        _coin++;
-        coinText.text = $"{_coin}";
+        coinText.text = $"{coinsCount}";
     }
 }
