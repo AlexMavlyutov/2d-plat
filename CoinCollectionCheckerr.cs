@@ -7,13 +7,14 @@ public class CoinCollectionChecker : MonoBehaviour
 {
     private float _waitingTime = 10;
    
-    public event UnityAction IncreasedOfCoins;
+    public event UnityAction CoinCollected;
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))
         {
-            IncreasedOfCoins?.Invoke();
+            CoinCollected?.Invoke();
 
             gameObject.SetActive(false);
 
